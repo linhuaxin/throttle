@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Throttle</title>
+</head>
+<body>
+  <input type="text" id="name" >
+  <button id="cancelBtn">取消</button>
+
+  <script src="index.js"></script>
+
+  <script>
+    let input = document.getElementById('name');
+
+    let throttleHandler = throttle(function(e) {
+      console.log(e.target.value, this);
+    }, 3000, { trailing: true });
+    input.addEventListener('input', throttleHandler);
+
+    let cancelBtn = document.getElementById('cancelBtn');
+    cancelBtn.addEventListener('click', () => {
+      throttleHandler.cancel();
+    });
+
+  </script>
+</body>
+</html>
